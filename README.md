@@ -1,8 +1,38 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Allfunds
 
-## Getting Started
+The projext currently has mobile and desktop view. Mobile is intended for large screens (max-width 400px)
 
-First, run the development server:
+## Instalation
+
+1- Clone de repository in your local machine, then install dependencies with:
+
+```bash
+npm run install
+# or
+yarn install
+# or
+pnpm install
+# or
+bun install
+```
+
+2- Change the .env.example file to just .env
+
+3- Run the local json-server using:
+
+```bash
+npm run startdb
+# or
+yarn startdb
+# or
+pnpm startdb
+# or
+bun startdb
+```
+
+It will initialize in localhost:3001
+
+4- Run dev enviroment with:
 
 ```bash
 npm run dev
@@ -16,9 +46,6 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
 ## Learn More
 
@@ -27,10 +54,25 @@ To learn more about Next.js, take a look at the following resources:
 - [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
 - [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
+## Test
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+You can run test in the Item Component by using:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+```bash
+npm run test
+# or
+yarn test
+# or
+pnpm test
+# or
+bun test
+```
+
+## Live Examples 
+
+![Captura de pantalla 2024-06-17 214351](https://github.com/Madpug2022/Allfunds/assets/98781462/9b0875f6-f793-4992-a7c8-986ea65d78a2)
+
+![Captura de pantalla 2024-06-17 214446](https://github.com/Madpug2022/Allfunds/assets/98781462/05e62737-ea69-43a7-b902-b3986c987bfe)
+
+
