@@ -1,8 +1,10 @@
+import ProductDisplay from "./components/ProductDisplay";
+
 export default function Home() {
 
   return (
-    <main >
-      main
-    </main>
+    <section className="mainpage__container">
+      <ProductDisplay />
+    </section>
   );
 }

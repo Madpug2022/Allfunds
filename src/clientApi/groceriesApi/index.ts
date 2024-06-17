@@ -17,6 +17,22 @@ const GROCERIES_API = {
             throw error
         }
     },
+    addToFavorite: async (groceryId: string, favorite: string) => {
+        try {
+            const response = await requests.patch(`/grocery/${groceryId}`, { favorite });
+            return response;
+        } catch (error) {
+            throw error
+        }
+    },
+    removeFromFavorite: async (groceryId: string, favorite: string) => {
+        try {
+            const response = await requests.patch(`/grocery/${groceryId}`, { favorite });
+            return response;
+        } catch (error) {
+            throw error
+        }
+    },
     getFavorite: async (listId: string) => {
         try {
             const response = await requests.get(`/grocery?favorite=${listId}`);
