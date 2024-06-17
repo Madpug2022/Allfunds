@@ -1,8 +1,8 @@
 export interface CartI {
     id: string;
-    name: string;
+    productName: string;
     price: number;
     quantity: number;
-    image: string;
+    image_url: string;
     newStock: number;
 }

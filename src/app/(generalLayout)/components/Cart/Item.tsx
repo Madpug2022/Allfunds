@@ -2,6 +2,7 @@
 
 import shopContext from "@/contexts/ShopContext"
 import { CartI } from "@/interfaces/cart"
+import { ProductI } from "@/interfaces/product"
 import { useContext } from "react"
 import styled from "styled-components"
 
@@ -42,22 +43,26 @@ font-weight: 700;
 `
 
 
-const Item = ({ product }: { product: CartI }) => {
+const Item = ({ product }: { product: CartI | ProductI }) => {
 
     const { addOneItemToCart, removeFromCart } = useContext(shopContext)
 
+    const isCartProduct = (product: CartI | ProductI): product is CartI => {
+        return (product as CartI).quantity !== undefined;
+    };
+
     return (
         <StyledItemContainer>
-            <StyledItemImg src={product.image} alt={product.name} />
+            <StyledItemImg src={product.image_url} alt={product.productName} />
             <div className="infocontainer">
-                <p className="name">{product.name}</p>
-                <div className="infocontainer__quantity">
+                <p className="name">{product.productName}</p>
+                {isCartProduct(product) && <div className="infocontainer__quantity">
                     <SumStyledButton onClick={() => removeFromCart(product.id)}>-</SumStyledButton>
                     <p>{product.quantity}</p>
                     <SumStyledButton onClick={() => addOneItemToCart(product.id)}>+</SumStyledButton>
-                </div>
+                </div>}
             </div>
-            <p className="price">{product.price * product.quantity} €</p>
+            {isCartProduct(product) && <p className="price">{product.price * product.quantity} €</p>}
         </StyledItemContainer>
     )
 }

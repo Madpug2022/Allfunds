@@ -62,7 +62,7 @@ export const ShopProvider = ({
                 )
             );
         } else {
-            setCart([...cart, { id: product.id, image: product.image_url, name: product.productName, price: product.price, quantity: 1, newStock: product.stock - 1 }]);
+            setCart([...cart, { id: product.id, image_url: product.image_url, productName: product.productName, price: product.price, quantity: 1, newStock: product.stock - 1 }]);
         }
         // remover 1 unidad del stock
         setProducts(products.map((item) =>

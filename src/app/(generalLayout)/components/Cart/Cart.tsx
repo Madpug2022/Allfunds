@@ -1,20 +1,18 @@
 "use client"
 
 import shopContext from "@/contexts/ShopContext"
-import media from "@/helpers/generateBreakpoints"
 import { useContext } from "react"
 import styled from "styled-components"
 import { ProducList } from "../ProductDisplay"
 import Item from "./Item"
+import media from "@/helpers/generateBreakpoints"
 
 const ProducCartContainer = styled.div`
-    width: 30%;
-    border-left: 1px solid #ccc;
+   width: 100%;
+    height: 100%;
     position: relative;
     display: flex;
-    ${media.mobileL`
-        display: none;
-    `};
+
     `
 
 const ProductsCart = styled.div`
@@ -27,6 +25,11 @@ const ProductsCart = styled.div`
     flex-direction: column;
     position: fixed;
     overflow-y: auto;
+    ${media.mobileL`
+        width: 100%;
+        padding: 1rem;
+    `};
+
 `
 
 const StyledCheckoutButton = styled.button`
@@ -44,8 +47,23 @@ const StyledCheckoutButton = styled.button`
 
     `
 
+const CloseButton = styled.button`
+    display:none;
+    ${media.mobileL`
+        position: absolute;
+    display: block;
+    color: black;
+    top: 20px;
+    font-size: 20px;
+    left: 20px;
+    background-color: transparent;
+    border: none;
+    `};
+
+    `
+
 const Cart = () => {
-    const { cart, removeItemsFromStock, setCart } = useContext(shopContext);
+    const { cart, removeItemsFromStock, setCart, showFavorites, favorites, setShowCart } = useContext(shopContext);
 
     const total = cart.reduce((acc, item) => {
         return acc + item.price * item.quantity
@@ -58,14 +76,26 @@ const Cart = () => {
 
     return (
         <ProducCartContainer>
-            <ProductsCart>
-                <StyledCheckoutButton onClick={() => handlecheckout()}>CHECKOUT {total}€</StyledCheckoutButton>
-                <ProducList width="100%">{cart.map((product) => {
-                    return (
-                        <Item key={product.id} product={product} />
-                    )
-                })}</ProducList>
-            </ProductsCart>
+            {showFavorites ?
+                <ProductsCart>
+                    <CloseButton onClick={() => setShowCart(false)}>X</CloseButton>
+                    <ProducList width="100%">{favorites.map((product) => {
+                        return (
+                            <Item key={product.id} product={product} />
+                        )
+                    })}
+                    </ProducList>
+                </ProductsCart>
+                :
+                <ProductsCart>
+                    <CloseButton onClick={() => setShowCart(false)}>X</CloseButton>
+                    <StyledCheckoutButton onClick={() => handlecheckout()}>CHECKOUT {total}€</StyledCheckoutButton>
+                    <ProducList width="100%">{cart.map((product) => {
+                        return (
+                            <Item key={product.id} product={product} />
+                        )
+                    })}</ProducList>
+                </ProductsCart>}
         </ProducCartContainer>
     )
 }
