@@ -4,23 +4,30 @@ import { IoHeart } from "react-icons/io5";
 import { useContext } from "react";
 import shopContext from "@/contexts/ShopContext";
 import './styles.scss'
+import { IconType } from "react-icons";
+
+const IconButton = ({ icon, onClick, ammount, className }: {
+    icon: IconType
+    onClick: () => void
+    ammount: number
+    className?: string
+}
+) => {
+    return (
+        <button className={className} onClick={onClick}>
+            {icon({ height: "100%", width: "100%" })}
+            {ammount !== 0 && <span className="navbar__cartButton__cartAmmount">{ammount}</span>}
+        </button>
+    )
+}
 
 const NavBar = () => {
     const { cart, favorites, setShowFavorites, showFavorites, setShowCart, showCart } = useContext(shopContext);
     return (
         <nav className="navbar">
-            <button className="navbar__cartButton">
-                <FaCartShopping style={{ height: "100%", width: "100%" }} />
-                {cart.length !== 0 && <span className="navbar__cartButton__cartAmmount">{cart.length}</span>}
-            </button>
-            <button className="navbar__cartButtonRes" onClick={() => setShowCart(!showCart)}>
-                <FaCartShopping style={{ height: "100%", width: "100%" }} />
-                {cart.length !== 0 && <span className="navbar__cartButton__cartAmmount">{cart.length}</span>}
-            </button>
-            <button className="navbar__favoriteBtn" onClick={() => setShowFavorites(!showFavorites)}>
-                <IoHeart style={showFavorites ? { color: "#DDD" } : { color: "#b80909" }} height="25px" width="25px" />
-                {favorites.length !== 0 && <span className="navbar__favoriteBtn__favoritesAmmount">{favorites.length}</span>}
-            </button>
+            <IconButton icon={FaCartShopping} onClick={() => setShowCart(!showCart)} ammount={cart.length} className="navbar__cartButton" />
+            <IconButton icon={FaCartShopping} onClick={() => setShowCart(!showCart)} ammount={cart.length} className="navbar__cartButtonRes" />
+            <IconButton icon={IoHeart} onClick={() => setShowFavorites(!showFavorites)} ammount={favorites.length} className="navbar__favoriteBtn" />
         </nav>
     )
 }

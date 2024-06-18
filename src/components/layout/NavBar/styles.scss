@@ -1,73 +1,64 @@
+$dark-color: #333;
+$highlight-color: #f00;
+$text-color: #fff;
+$button-size: 25px;
+$notification-size: 20px;
+
+@mixin flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin button-base {
+    background-color: $dark-color;
+    position: relative;
+    height: 100%;
+    width: $button-size;
+    color: $text-color;
+    border: none;
+    padding: 2px;
+    cursor: pointer;
+}
+
+@mixin notification-badge {
+    position: absolute;
+    background-color: $highlight-color;
+    color: $text-color;
+    border-radius: 50%;
+    height: $notification-size;
+    width: $notification-size;
+    top: -10px;
+    right: -10px;
+    @include flex-center;
+}
+
 .navbar {
     position: fixed;
-    background-color: #333;
+    background-color: $dark-color;
     width: 100%;
-    display: flex;
+    @include flex-center;
     justify-content: space-between;
     z-index: 10;
     height: 5%;
     max-height: 75px;
-    color: #fff;
+    color: $text-color;
     padding: 10px 20px;
     text-align: center;
 
-    &__cartButton {
-        background-color: #333;
-        position: relative;
-        height: 100%;
-        width: 25px;
-        color: #fff;
-        border: none;
-        padding: 2px;
-        cursor: pointer;
+    &__cartButton,
+    &__favoriteBtn {
+        @include button-base;
 
-        &__cartAmmount {
-            position: absolute;
-            background-color: #f00;
-            color: #fff;
-            border-radius: 50%;
-            height: 20px;
-            width: 20px;
-            top: -10px;
-            right: -10px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+        &__cartAmmount,
+        &__favoritesAmmount {
+            @include notification-badge;
         }
-
-
     }
 
     &__cartButtonRes {
         display: none;
     }
-
-    &__favoriteBtn {
-        background-color: #333;
-        position: relative;
-        height: 100%;
-        width: 25px;
-        color: #fff;
-        border: none;
-        padding: 2px;
-        cursor: pointer;
-
-        &__favoritesAmmount {
-            position: absolute;
-            background-color: #f00;
-            color: #fff;
-            border-radius: 50%;
-            height: 20px;
-            width: 20px;
-            top: -10px;
-            right: -10px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-    }
-
-
 
     @media screen and (max-width: 425px) {
         height: 10%;
@@ -78,27 +69,10 @@
 
         &__cartButtonRes {
             display: block;
-            background-color: #333;
-            position: relative;
-            height: 100%;
-            width: 25px;
-            color: #fff;
-            border: none;
-            padding: 2px;
-            cursor: pointer;
+            @include button-base;
 
             &__cartAmmount {
-                position: absolute;
-                background-color: #f00;
-                color: #fff;
-                border-radius: 50%;
-                height: 20px;
-                width: 20px;
-                top: -10px;
-                right: -10px;
-                display: flex;
-                justify-content: center;
-                align-items: center;
+                @include notification-badge;
             }
         }
     }
